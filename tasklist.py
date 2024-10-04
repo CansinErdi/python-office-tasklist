@@ -7,3 +7,14 @@ def add_task():
         task_entry = {"task": task}
     tasklist.append(task_entry)
     print(f"Task '{task}' has been added to the list.")
+
+
+    def show_tasklist():
+    if not tasklist:
+        print("Your task list is empty.")
+    else:
+        print("Your tasks:")
+        for task_entry in tasklist:
+            task = task_entry["task"]
+            due_date = task_entry.get("due_date", "No due date")
+            print(f"- {task} (Due: {due_date})")
