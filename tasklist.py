@@ -1,15 +1,32 @@
+tasklist = []
+
 def add_task():
+    # Ask the user to input a task
     task = input("Please enter a task to add to your task list: ")
+    
+    # Ask the user for a due date (optional)
     due_date = input("Enter a due date (optional) in the format DD/MM/YYYY or leave it blank: ")
+    
+    # Ask for priority
+    priority = input("Enter the priority (high, medium, low): ").lower()
+    
+    # Create a task entry with or without a due date
     if due_date:
-        task_entry = {"task": task, "due_date": due_date}
+        task_entry = {"task": task, "due_date": due_date, "priority": priority}
     else:
-        task_entry = {"task": task}
+        task_entry = {"task": task, "priority": priority}
+    
+    # Add the task to the task list
     tasklist.append(task_entry)
-    print(f"Task '{task}' has been added to the list.")
+    
+    # Print the task details to debug
+    print(f"Task: {task}, Due Date: {due_date}, Priority: {priority}")
+
+    # Notify the user that the task has been added
+    print(f"Task '{task}' with priority '{priority}' has been added to the list.")
 
 
-    def show_tasklist():
+def show_tasklist():
     if not tasklist:
         print("Your task list is empty.")
     else:
@@ -18,8 +35,6 @@ def add_task():
             task = task_entry["task"]
             due_date = task_entry.get("due_date", "No due date")
             print(f"- {task} (Due: {due_date})")
-
-
 
 def main():
     while True:
@@ -51,4 +66,18 @@ def add_task():
     priority = input("Enter the priority (high, medium, low): ").lower()
     task_entry = {"task": task, "due_date": due_date, "priority": priority}
     tasklist.append(task_entry)
-    print(f"Task '{task}' with priority '{priority}' has been added.")    
+    print(f"Task '{task}' with priority '{priority}' has been added.") 
+
+import csv
+
+def export_to_csv():
+    with open("tasklist.csv", mode="w", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=["task", "due_date", "priority"])
+        writer.writeheader()
+        for task in tasklist:
+            writer.writerow(task)
+    print("Task list has been exported to CSV.")
+
+
+print(f"Task: {task}, Due Date: {due_date}, Priority: {priority}")
+
