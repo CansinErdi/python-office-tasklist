@@ -40,4 +40,15 @@ def main():
             print("Invalid input. Please try again.")
 
 if __name__ == "__main__":
-    main()            
+    main()
+
+
+
+
+def add_task():
+    task = input("Please enter a task: ")
+    due_date = input("Enter a due date (optional): ")
+    priority = input("Enter the priority (high, medium, low): ").lower()
+    task_entry = {"task": task, "due_date": due_date, "priority": priority}
+    tasklist.append(task_entry)
+    print(f"Task '{task}' with priority '{priority}' has been added.")    
